@@ -26,10 +26,12 @@ int main(void) {
 	// Redirect STDIN to read from the pipe.
 	int y;
 	read(fd[READ],&y, sizeof(int));
-	
-	printf("numero %d  \n",y);
+	if(y<500){
+	printf("menor que 500\n");
+	}else{
+	printf("mayor o igual que 500\n");
+	}
 	close(fd[READ]);
-	
 	break;
 
   case -1:
@@ -42,8 +44,6 @@ int main(void) {
 	// Close the pipe read descriptor.
 	close(fd[READ]);
 	// Redirect STDOUT to write to the pipe.
-	
-    	//sprintf(buffer_write, "%d",50);
     	int x=rdm();
 	write(fd[WRITE], &x, sizeof(int));
 	close(fd[WRITE]);
